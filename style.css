@@ -1,28 +1,41 @@
 #mainCalc {
     display: flex;
-    flex: 0 1 1;
-    /* background-color: black; */
+    flex: 1 1 auto;
+    flex-direction: column;
+    background-color: black;
     justify-content: center;
+    align-items: center;
+    /* top: 20px; */
+    /* bottom: 20px; */
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #keyPad {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    /* display: grid; */
+    /* grid-template-columns: repeat(4, minmax(0, 1fr)); */
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 80%;
 }
 
 .key {
-    background-color: darkslategray;
-    height: 128px;
-    width: 128px;
     display: flex;
+    flex: 1 0 auto;
     justify-content: center;
+    width: 25%;
+    background-color: darkslategray;
     text-align: center;
+    align-items: center;
+    /* height: 25%px; */
     border: 1px;
     border-color: grey;
     border-style: solid;
-    flex: 1 0 auto;
     /* justify-items: center; */
-    align-items: center;
     color:aliceblue;
     font-size: 32pt;
     font-weight: bold;
@@ -37,4 +50,23 @@
 
 .key:hover {
     background-color: grey;
+}
+
+.key:active {
+    background-color: white;
+    transition: 10ms;
+    color:grey;
+}
+
+#input {
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: right;
+    width: 500px;
+    font-size: 48pt;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    border: 0;
+    background-color: black;
+    color: aliceblue;
 }
