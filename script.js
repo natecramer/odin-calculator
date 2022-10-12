@@ -9,18 +9,13 @@ let theNumber = 0;
 const theNumberDiv = document.querySelector('#theNumber');
 function setTheNumber(n) {
     theNumber = Number(n);
-
-    // theNumberDiv.textContent = String(theNumber);
     inputElem.textContent = String(theNumber);
 }
 
-let operationString = '';
-
-// let operation = '';
 let operator = '';
 let number2 = 0;
 // returns a number, the result of the operation
-function evaluateOperationString()
+function evaluateOperation()
 {
     let result = theNumber;
 
@@ -68,11 +63,6 @@ keys.forEach(k => k.addEventListener('click', e => {
     } else if (k.classList.contains('operator')) {
         setTheNumber(inputElem.textContent);
 
-        // if (k.id === 'keyAdd') {
-        //     operator = '+';
-        // } else if (k.id === 'keySubtract') {
-        //     operator = '-';
-        // }
         if (k.id in keyToOperatorMap) {
             operator = keyToOperatorMap[k.id];
         } else {
@@ -95,8 +85,8 @@ keys.forEach(k => k.addEventListener('click', e => {
             number2 = Number(inputElem.textContent);
         readyToBeReset = true;
         let prevNumber = theNumber;
-        setTheNumber(evaluateOperationString());
-        // operationOutput.textContent = prevNumber + ' ' + operator + number2 + '=' + theNumber;
+        setTheNumber(evaluateOperation());
+
         operationOutput.textContent = `${prevNumber} ${operator} ${number2} = ${theNumber}`;
     } else if (k.id === 'keyClear') {
         setTheNumber(0);
