@@ -32,6 +32,10 @@ function evaluateOperationString()
         result = Number(n1 + n2);
     } else if (op === '-') {
         result = Number(n1 - n2);
+    } else if (op === '*') {
+        result = Number(n1 * n2);
+    } else if (op === '/') {
+        result = Number(n1 / n2);
     }
 
     return result;
@@ -40,6 +44,12 @@ function evaluateOperationString()
 let readyToBeReset = false;
 
 let operationOutput = document.querySelector('#operationOutput');
+let keyToOperatorMap = {
+    keyAdd : '+',
+    keySubtract : '-',
+    keyMultiply : '*',
+    keyDivide : '/'
+}
 
 keys.forEach(k => k.addEventListener('click', e => {
     if (k.classList.contains('num')) {
@@ -53,10 +63,15 @@ keys.forEach(k => k.addEventListener('click', e => {
     } else if (k.classList.contains('operator')) {
         setTheNumber(inputElem.textContent);
 
-        if (k.id === 'keyAdd') {
+        // if (k.id === 'keyAdd') {
+        //     operator = '+';
+        // } else if (k.id === 'keySubtract') {
+        //     operator = '-';
+        // }
+        if (k.id in keyToOperatorMap) {
+            operator = keyToOperatorMap[k.id];
+        } else {
             operator = '+';
-        } else if (k.id === 'keySubtract') {
-            operator = '-';
         }
 
         operationOutput.textContent = theNumber + ' ' + operator;
@@ -64,7 +79,13 @@ keys.forEach(k => k.addEventListener('click', e => {
     } else if (k.id === 'keyBackSpace') {
         inputElem.textContent = inputElem.textContent.slice(0, inputElem.textContent.length-1);
     } else if (k.id === 'keyEquals') {
-        operation = '';
+        if (operator === '') {
+            operationOutput.textContent = `${inputElem.textContent} = `;
+            setTheNumber(inputElem.textContent);
+            readyToBeReset = true;
+            return;
+        }
+        
         if (!readyToBeReset)
             number2 = Number(inputElem.textContent);
         readyToBeReset = true;
@@ -77,6 +98,12 @@ keys.forEach(k => k.addEventListener('click', e => {
         inputElem.textContent = '0';
         operator = '';
         operationOutput.textContent = ' ';
+    } else if (k.id === 'keyDot') {
+        if (readyToBeReset) {
+            readyToBeReset = false;
+            inputElem.textContent = '';    
+        }
+        inputElem.textContent += '.';
     }
 
     if (inputElem.textContent === '')
