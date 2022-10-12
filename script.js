@@ -94,9 +94,11 @@ keys.forEach(k => k.addEventListener('click', e => {
         operator = '';
         operationOutput.textContent = ' ';
     } else if (k.id === 'keyDot') {
+        if (inputElem.textContent.indexOf('.') !== -1)
+            return;
         if (readyToBeReset) {
             readyToBeReset = false;
-            inputElem.textContent = '';    
+            inputElem.textContent = '';
         }
         inputElem.textContent += '.';
     }
