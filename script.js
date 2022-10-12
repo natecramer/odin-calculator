@@ -35,7 +35,12 @@ function evaluateOperationString()
     } else if (op === '*') {
         result = Number(n1 * n2);
     } else if (op === '/') {
-        result = Number(n1 / n2);
+        if (n2 === 0) {
+            alert("No, you can not divide by zero.");
+            return 0;
+        } else {
+            result = Number(n1 / n2);
+        }
     }
 
     return result;
