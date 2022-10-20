@@ -44,7 +44,8 @@
     /* border-radius: 9px; */
 }
 
-.alt {
+.alt,
+.operator {
     background-color: rgb(32, 54, 54);
 }
 
